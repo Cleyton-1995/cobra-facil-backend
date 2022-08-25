@@ -30,7 +30,7 @@ model Charge {
 
   userId          Int
   name          String @db.VarChar(75)
-  description String @db.LongText
+  description String @db.Text
   status          Int      @db.TinyInt
   value           Decimal @db.Decimal(7, 2)
   code            Int      @db.Int

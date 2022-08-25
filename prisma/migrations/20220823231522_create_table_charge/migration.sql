@@ -15,7 +15,7 @@ CREATE TABLE `charge` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
     `name` VARCHAR(75) NOT NULL,
-    `description` LONGTEXT NOT NULL,
+    `description` TEXT NOT NULL,
     `status` TINYINT NOT NULL,
     `value` DECIMAL(7, 2) NOT NULL,
     `code` INTEGER NOT NULL,
