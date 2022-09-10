@@ -1,13 +1,18 @@
 import { Request, Response } from "express";
 import { prismaClient } from "../database/prismaClient";
 
-export class FindUserController {
-  async handle(request: Request, response: Response) {
-    const { id } = request.params;
+interface LoginControllerProps {
+  email: string;
+  password: string;
+}
 
-    const find = await prismaClient.user.findUnique({
+export class LoginController {
+  async handle(request: Request, response: Response) {
+    const { email, password } = <LoginControllerProps> request.body;
+
+    const find = await prismaClient.user.findFirst({
       where: {
-        id: Number(id),
+        email: email,
       },
       include: {
         UserChrage: true,
