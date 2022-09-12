@@ -19,6 +19,9 @@ model User {
   avatar    String?   @db.VarChar(255)
   createdAt DateTime? @default(now()) @db.DateTime(0)
   updatedAt DateTime? @updatedAt
+  bank      String?   @db.VarChar(75)
+  account   Int?      @unique @db.TinyInt
+  agency    Int?      @db.TinyInt
   // Vouchers      Charge[]
 
   UserChrage UserChrage[]
