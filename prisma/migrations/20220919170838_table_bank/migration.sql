@@ -12,6 +12,7 @@ CREATE TABLE `user` (
     `createdAt` DATETIME(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` DATETIME(3) NULL,
 
+    UNIQUE INDEX `user_email_key`(`email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -35,6 +36,16 @@ CREATE TABLE `user_charge` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `id_User` INTEGER NOT NULL,
     `id_Charge` INTEGER NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `bank` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `bank` VARCHAR(25) NULL,
+    `account` VARCHAR(10) NULL,
+    `agency` VARCHAR(10) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

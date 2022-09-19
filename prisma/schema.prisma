@@ -19,10 +19,8 @@ model User {
   avatar    String?   @db.VarChar(255)
   createdAt DateTime? @default(now()) @db.DateTime(0)
   updatedAt DateTime? @updatedAt
-  bank      String?   @db.VarChar(75)
-  account   Int?      @unique @db.TinyInt
-  agency    Int?      @db.TinyInt
-  // Vouchers      Charge[]
+
+  // Bank Bank[]
 
   UserChrage UserChrage[]
 
@@ -38,7 +36,7 @@ model Charge {
   status      Int?      @db.TinyInt
   value       Decimal?  @db.Decimal(7, 2)
   code        Int?      @db.Int
-  dueDate     DateTime? @db.DateTime
+  dueDate     String?   @db.VarChar(10)
   createdAt   DateTime? @default(now())
   updatedAt   DateTime? @updatedAt
 
@@ -56,4 +54,13 @@ model UserChrage {
   charge    Charge @relation(fields: [id_Charge], references: [id])
 
   @@map("user_charge")
+}
+
+model Bank {
+  id      Int     @id @default(autoincrement())
+  bank    String? @db.VarChar(25)
+  account String? @db.VarChar(10)
+  agency  String? @db.VarChar(10)
+
+  @@map("bank")
 }
