@@ -11,8 +11,10 @@ CREATE TABLE `user` (
     `avatar` VARCHAR(255) NULL,
     `createdAt` DATETIME(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
     `updatedAt` DATETIME(3) NULL,
+    `bankId` INTEGER NOT NULL,
 
     UNIQUE INDEX `user_email_key`(`email`),
+    UNIQUE INDEX `user_bankId_key`(`bankId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -24,7 +26,7 @@ CREATE TABLE `charge` (
     `status` TINYINT NULL,
     `value` DECIMAL(7, 2) NULL,
     `code` INTEGER NULL,
-    `dueDate` DATETIME NULL,
+    `dueDate` VARCHAR(10) NULL,
     `createdAt` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NULL,
 
@@ -49,6 +51,9 @@ CREATE TABLE `bank` (
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `user` ADD CONSTRAINT `user_bankId_fkey` FOREIGN KEY (`bankId`) REFERENCES `bank`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `user_charge` ADD CONSTRAINT `user_charge_id_User_fkey` FOREIGN KEY (`id_User`) REFERENCES `user`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

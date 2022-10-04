@@ -2,16 +2,29 @@ import { Request, Response } from "express";
 import { prismaClient } from "../database/prismaClient";
 
 export class BankDataController {
-  async handle(request: Request, response: Response) {
-    const { bank, account, agency } = request.body;
+  async getBankData(request: Request, response: Response) {
+    const { bank, account, agency } = request.params;
 
-    const bankData = await prismaClient.bank.create({
+    const getBank = await prismaClient.bank.findMany({
+      where: {
+        bank: bank,
+        account: account,
+        agency: agency,
+      },
+    });
+    return response.json(getBank);
+  }
+  async handle(request: Request, response: Response) {
+    const { userId, bank, account, agency } = request.body;
+
+    const createBank = await prismaClient.bank.create({
       data: {
         bank,
         account,
-        agency
+        agency,
       },
     });
-    return response.json(bankData);
+    return response.json(createBank);
   }
-}
+};
+
