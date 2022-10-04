@@ -27,9 +27,6 @@ model User {
 
   // Bank Bank?
 
-  bank   Bank @relation(fields: [bankId], references: [id])
-  bankId Int  @unique
-
   UserChrage UserChrage[]
 
   @@map("user")
@@ -68,7 +65,8 @@ model Bank {
   account String? @db.VarChar(10)
   agency  String? @db.VarChar(10)
 
-  user User?
+  // user   User @relation(fields: [bankId], references: [id])
+  // bankId Int  @unique
 
   @@map("bank")
 }
