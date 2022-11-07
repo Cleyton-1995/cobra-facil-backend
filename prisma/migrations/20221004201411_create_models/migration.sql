@@ -24,7 +24,7 @@ CREATE TABLE `charge` (
     `status` TINYINT NULL,
     `value` DECIMAL(7, 2) NULL,
     `code` INTEGER NULL,
-    `dueDate` DATETIME NULL,
+    `dueDate` VARCHAR(10) NULL,
     `createdAt` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NULL,
 
